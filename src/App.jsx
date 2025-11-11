@@ -1,16 +1,31 @@
-import React from 'react'
-import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import BibliotecaJuegos from './pages/BibliotecaJuegos'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import BibliotecaJuegos from "./pages/BibliotecaJuegos.jsx";
+import Resenas from "./pages/Resenas.jsx";
+import Estadisticas from "./pages/Estadisticas.jsx";
+import Inicio from "./pages/Inicio.jsx";
 
 function App() {
   return (
     <Router>
+      <nav>
+        <h2>🎮 Mi Biblioteca Gamer</h2>
+        <div>
+          <Link to="/">Inicio</Link>
+          <Link to="/biblioteca">Biblioteca</Link>
+          <Link to="/resenas">Reseñas</Link>
+          <Link to="/estadisticas">Estadísticas</Link>
+        </div>
+      </nav>
+
       <Routes>
-        <Route path="/" element={<BibliotecaJuegos />} />
+        <Route path="/" element={<Inicio />} />
+        <Route path="/biblioteca" element={<BibliotecaJuegos />} />
+        <Route path="/resenas" element={<Resenas />} />
+        <Route path="/estadisticas" element={<Estadisticas />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
