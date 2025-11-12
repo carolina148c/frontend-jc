@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <nav>
-        <h2>🎮 Mi Biblioteca Gamer</h2>
+        <h2>GameTracker</h2>
         <div>
           <Link to="/">Inicio</Link>
           <Link to="/biblioteca">Biblioteca</Link>

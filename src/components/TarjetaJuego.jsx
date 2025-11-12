@@ -1,30 +1,51 @@
 import React from "react";
+import "../assets/css/TarjetaJuego.css";
+
 
 function TarjetaJuego({ juego, onEditar, onEliminar }) {
-    return (
-    <div className="card">
-        <img
+  return (
+    <div className="tarjeta-juego">
+      <img
         src={juego.imagenPortada}
         alt={juego.titulo}
-        style={{ width: "100%", borderRadius: "8px" }}
-        />
-    <h3 style={{ marginTop: "0.8rem" }}>{juego.titulo}</h3>
-    <p>🎮 {juego.plataforma}</p>
-    <p>⭐ {juego.genero}</p>
-    <p>📅 {juego.anoLanzamiento}</p>
-    <p>{juego.completado ? "✅ Completado" : "🕹️ En progreso"}</p>
+        className="tarjeta-imagen"
+      />
+      <div className="tarjeta-contenido">
+        <h3 className="tarjeta-titulo">{juego.titulo}</h3>
+        <p className="tarjeta-info">
+          <span>🎮</span>
+          <span>{juego.plataforma}</span>
+        </p>
+        <p className="tarjeta-info">
+          <span>⭐</span>
+          <span>{juego.genero}</span>
+        </p>
+        <p className="tarjeta-info">
+          <span>📅</span>
+          <span>{juego.anoLanzamiento}</span>
+        </p>
+        <p className={`tarjeta-estado ${juego.completado ? "completado" : "progreso"}`}>
+          {juego.completado ? "✅ Completado" : "🕹️ En progreso"}
+        </p>
 
-    <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
-        <button onClick={() => onEditar(juego)}>Editar</button>
-        <button
+        <div className="tarjeta-botones">
+          <button
+            onClick={() => onEditar(juego)}
+            className="btn-editar"
+          >
+            Editar
+          </button>
+          <button
             onClick={() => onEliminar(juego._id)}
-            style={{ backgroundColor: "#ff4c4c" }}
-        >
+            className="btn-eliminar"
+          >
             Eliminar
-        </button>
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
-);
+  );
 }
+
 
 export default TarjetaJuego;

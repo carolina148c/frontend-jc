@@ -1,0 +1,106 @@
+/* Tarjeta principal */
+.tarjeta-juego {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #2a2a2a;
+}
+
+.tarjeta-juego:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(220, 38, 38, 0.2);
+}
+
+/* Imagen de portada */
+.tarjeta-imagen {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenido */
+.tarjeta-contenido {
+  padding: 1.2rem;
+}
+
+/* Título */
+.tarjeta-titulo {
+  color: #dc2626;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+/* Información del juego */
+.tarjeta-info {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Estado del juego */
+.tarjeta-estado {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.tarjeta-estado.completado {
+  color: #10b981;
+}
+
+.tarjeta-estado.progreso {
+  color: #f59e0b;
+}
+
+/* Contenedor de botones */
+.tarjeta-botones {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+/* Botón editar */
+.btn-editar {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background-color: #374151;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-editar:hover {
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-eliminar:hover {
+  background-color: #b91c1c;
+}

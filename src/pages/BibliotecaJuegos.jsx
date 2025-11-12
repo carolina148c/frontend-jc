@@ -1,113 +1,46 @@
-import React, { useEffect, useState } from "react";
-import {
-  obtenerJuegos,
-  agregarJuego,
-  editarJuego,
-  eliminarJuego,
-} from "../services/api";
-import TarjetaJuego from "../components/TarjetaJuego";
-import FormularioJuego from "../components/FormularioJuego";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "../assets/css/BibliotecaJuegos.css";
 
-function BibliotecaJuegos() {
+
+const BibliotecaJuegos = () => {
   const [juegos, setJuegos] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [juegoEditado, setJuegoEditado] = useState(null);
-  const [error, setError] = useState(null);
 
-  // Cargar los juegos al iniciar
   useEffect(() => {
-    cargarJuegos();
+    const obtenerJuegos = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/api/juegos");
+        setJuegos(res.data);
+      } catch (error) {
+        console.error("Error al obtener los juegos:", error);
+      }
+    };
+
+    obtenerJuegos();
   }, []);
 
-  const cargarJuegos = async () => {
-    try {
-      setCargando(true);
-      const data = await obtenerJuegos();
-      setJuegos(data);
-    } catch (err) {
-      setError("Error al cargar los juegos");
-    } finally {
-      setCargando(false);
-    }
-  };
-
-  // Guardar (nuevo o editado)
-  const manejarGuardar = async (formData) => {
-    try {
-      if (juegoEditado) {
-        await editarJuego(juegoEditado._id, formData);
-      } else {
-        await agregarJuego(formData);
-      }
-      setJuegoEditado(null);
-      cargarJuegos();
-    } catch (err) {
-      console.error(err);
-      alert("Error al guardar el juego");
-    }
-  };
-
-  // Editar un juego
-  const manejarEditar = (juego) => {
-    setJuegoEditado(juego);
-  };
-
-  // Cancelar edición
-  const manejarCancelar = () => {
-    setJuegoEditado(null);
-  };
-
-  // Eliminar un juego
-  const manejarEliminar = async (id) => {
-    if (window.confirm("¿Seguro que deseas eliminar este juego?")) {
-      try {
-        await eliminarJuego(id);
-        cargarJuegos();
-      } catch (err) {
-        console.error(err);
-        alert("Error al eliminar el juego");
-      }
-    }
-  };
-
-  if (cargando) return <p>Cargando biblioteca...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
-    <section>
-      <h2>Biblioteca de Juegos</h2>
-
-      {/* Formulario para agregar o editar */}
-      <FormularioJuego
-        onGuardar={manejarGuardar}
-        juegoEditado={juegoEditado}
-        onCancelar={manejarCancelar}
-      />
-
-      {/* Lista de juegos */}
-      {juegos.length === 0 ? (
-        <p>No hay juegos en tu biblioteca aún.</p>
-      ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-            gap: "1.5rem",
-            marginTop: "1.5rem",
-          }}
-        >
-          {juegos.map((juego) => (
-            <TarjetaJuego
-              key={juego._id}
-              juego={juego}
-              onEditar={manejarEditar}
-              onEliminar={manejarEliminar}
+    <div className="biblioteca-container">
+      <h1>Biblioteca de Juegos</h1>
+      <div className="juegos-grid">
+        {juegos.map((juego) => (
+          <div key={juego._id} className="juego-card">
+            <img
+              src={juego.imagenPortada}
+              alt={juego.titulo}
+              className="juego-imagen"
             />
-          ))}
-        </div>
-      )}
-    </section>
+            <h3>{juego.titulo}</h3>
+            <p><strong>Género:</strong> {juego.genero}</p>
+            <p><strong>Plataforma:</strong> {juego.plataforma}</p>
+            <p><strong>Año:</strong> {juego.anoLanzamiento}</p>
+            <p><strong>Desarrollador:</strong> {juego.desarrollador}</p>
+            <p className="descripcion">{juego.descripcion}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-}
+};
 
 export default BibliotecaJuegos;
