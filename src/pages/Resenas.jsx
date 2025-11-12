@@ -4,7 +4,10 @@ import {
   agregarResena,
   editarResena,
   eliminarResena,
-} from "../services/api";
+} 
+from "../services/api";
+import "../assets/css/Resenas.css";
+
 
 function Resenas() {
   const [resenas, setResenas] = useState([]);
@@ -70,6 +73,7 @@ function Resenas() {
   const handleEditar = (resena) => {
     setResenaEditada(resena);
     setFormData(resena);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleEliminar = async (id) => {
@@ -83,18 +87,14 @@ function Resenas() {
     }
   };
 
-  if (cargando) return <p>Cargando reseñas...</p>;
+  if (cargando) return <p className="mensaje-carga">Cargando reseñas...</p>;
 
   return (
-    <section>
-      <h2>Reseñas de Juegos</h2>
+    <section className="resenas-container">
+      <h2>📝 Reseñas de Juegos</h2>
 
       {/* Formulario para reseña */}
-      <form
-        onSubmit={handleSubmit}
-        className="card"
-        style={{ marginBottom: "2rem", maxWidth: "600px" }}
-      >
+      <div className="formulario-resena">
         <h3>{resenaEditada ? "Editar Reseña" : "Nueva Reseña"}</h3>
 
         <input
@@ -125,8 +125,9 @@ function Resenas() {
           value={formData.textoResena}
           onChange={handleChange}
           rows={4}
-        ></textarea>
+        />
 
+      <label>Horas Jugadas:</label>
         <input
           type="number"
           name="horasJugadas"
@@ -146,48 +147,47 @@ function Resenas() {
           <option value="Difícil">Difícil</option>
         </select>
 
-        <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <label className="checkbox-label">
           <input
             type="checkbox"
             name="recomendaria"
             checked={formData.recomendaria}
-            onChange={handleChange}
+            onChange={handleChange} 
           />
           Recomendaría este juego
         </label>
 
-        <button type="submit">
+        <button type="submit" onClick={handleSubmit}>
           {resenaEditada ? "Guardar cambios" : "Agregar reseña"}
         </button>
-      </form>
+      </div>
 
       {/* Lista de reseñas */}
       {resenas.length === 0 ? (
-        <p>No hay reseñas registradas.</p>
+        <p className="mensaje-vacio">No hay reseñas registradas.</p>
       ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "1rem",
-          }}
-        >
+        <div className="resenas-grid">
           {resenas.map((r) => (
-            <div key={r._id} className="card">
-              <h3>Juego ID: {r.juegoId}</h3>
-              <p>⭐ {r.puntuacion} / 5</p>
-              <p>{r.textoResena}</p>
-              <p>⏱️ {r.horasJugadas} horas</p>
+            <div key={r._id} className="resena-card">
+            <h3>🎮 Juego: {r.juegoId?.titulo || "Sin título"}</h3>
+            <p>Género: {r.juegoId?.genero || "Desconocido"}</p>
+            <p>Plataforma: {r.juegoId?.plataforma || "Desconocida"}</p>
+
+              <p className="resena-puntuacion">⭐ {r.puntuacion} / 5</p>
+              <p className="resena-texto">{r.textoResena}</p>
+              <p>⏱️ {r.horasJugadas} horas jugadas</p>
               <p>🎯 Dificultad: {r.dificultad}</p>
-              <p>
+              <p className="resena-recomendacion">
                 {r.recomendaria ? "✅ Lo recomendaría" : "❌ No lo recomendaría"}
               </p>
 
-              <div style={{ marginTop: "1rem", display: "flex", gap: "0.5rem" }}>
-                <button onClick={() => handleEditar(r)}>Editar</button>
+              <div className="resena-botones">
+                <button className="btn-editar-resena" onClick={() => handleEditar(r)}>
+                  Editar
+                </button>
                 <button
+                  className="btn-eliminar-resena"
                   onClick={() => handleEliminar(r._id)}
-                  style={{ backgroundColor: "#ff4c4c" }}
                 >
                   Eliminar
                 </button>

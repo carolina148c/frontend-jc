@@ -1,26 +1,25 @@
 import React from "react";
+import "../assets/css/Inicio.css";
 
 function Inicio() {
-    return (
-    <section>
-        <h2>Bienvenido a tu Biblioteca de Juegos 🎮</h2>
-        <p style={{ marginTop: "1rem", lineHeight: "1.6" }}>
-        Administra tu colección personal de videojuegos, escribe reseñas,
-        califica con estrellas y lleva el control de tus horas jugadas.
+  return (
+    <section className="inicio-section">
+      <div className="inicio-content">
+        <h1 className="inicio-titulo">
+          TU BIBLIOTECA
+          <br />
+          <span className="inicio-titulo-destacado">DE VIDEOJUEGOS</span>
+        </h1>
+        
+        <p className="inicio-descripcion">
+          Organiza, rastrea y evalúa tu colección de videojuegos. Lleva el control de tus horas de juego, escribe reseñas y descubre estadísticas fascinantes sobre tus hábitos gaming.
         </p>
 
-        <div style={{ marginTop: "2rem" }}>
-        <h3>Funciones principales:</h3>
-        <ul style={{ marginTop: "1rem", marginLeft: "1.5rem", lineHeight: "1.8" }}>
-            <li>Gestiona tu colección personal de videojuegos.</li>
-            <li>Califica y reseña cada título que hayas jugado.</li>
-            <li>Marca los juegos como completados.</li>
-            <li>Registra tus horas jugadas y progreso.</li>
-            <li>Consulta estadísticas personales.</li>
-        </ul>
-        </div>
+        <button className="inicio-btn">VER AHORA</button>
+
+      </div>
     </section>
-    );
+  );
 }
 
 export default Inicio;
