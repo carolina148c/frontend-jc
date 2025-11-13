@@ -1,11 +1,14 @@
-/* Contenedor principal */
+/* =========================================================
+  RESEÑAS DE JUEGOS - ESTILOS PRINCIPALES
+   ========================================================= */
+
+/* ====== CONTENEDOR GENERAL ====== */
 .resenas-container {
   padding: 2rem;
   background-color: #0a0a0a;
   min-height: 100vh;
 }
 
-/* Título principal */
 .resenas-container h2 {
   color: #dc2626;
   font-size: 2.5rem;
@@ -14,16 +17,16 @@
   text-align: center;
 }
 
-/* Formulario de reseña */
+/* =========================================================
+  FORMULARIO DE RESEÑA PRINCIPAL (PÁGINA COMPLETA)
+   ========================================================= */
 .formulario-resena {
   background-color: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
   padding: 1.5rem;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -31,33 +34,44 @@
   color: #dc2626;
   font-size: 1.5rem;
   font-weight: 600;
-  margin-top: 0;
   margin-bottom: 1.5rem;
 }
 
-/* Inputs y selects */
+/* ====== CAMPOS DE FORMULARIO ====== */
 .formulario-resena input[type="text"],
 .formulario-resena input[type="number"],
 .formulario-resena textarea,
-.formulario-resena select {
+.formulario-resena select,
+.formulario-card input,
+.formulario-card textarea,
+.formulario-card select {
   width: 100%;
   padding: 0.75rem;
-  margin-bottom: 1rem;
   background-color: #0a0a0a;
   border: 1px solid #374151;
   border-radius: 6px;
   color: #e5e7eb;
   font-size: 0.95rem;
+  margin-bottom: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
 }
 
 .formulario-resena input:focus,
 .formulario-resena textarea:focus,
-.formulario-resena select:focus {
+.formulario-resena select:focus,
+.formulario-card input:focus,
+.formulario-card textarea:focus,
+.formulario-card select:focus {
   outline: none;
   border-color: #dc2626;
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.formulario-resena textarea,
+.formulario-card textarea {
+  resize: vertical;
+  font-family: inherit;
 }
 
 .formulario-resena input::placeholder,
@@ -65,41 +79,43 @@
   color: #6b7280;
 }
 
-.formulario-resena textarea {
-  resize: vertical;
-  font-family: inherit;
-}
-
-/* Labels */
-.formulario-resena label {
+/* =========================================================
+  LABELS Y CHECKBOX (MEJORADO)
+   ========================================================= */
+.formulario-resena label,
+.formulario-card .checkbox-label {
   display: block;
   color: #9ca3af;
   font-size: 0.95rem;
-  margin-bottom: 0.5rem;
   font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
-.formulario-resena .checkbox-label {
+.formulario-resena .checkbox-label,
+.formulario-card .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem; /* Ajuste para que no quede corrido */
   cursor: pointer;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
-.formulario-resena input[type="checkbox"] {
+.formulario-resena input[type="checkbox"],
+.formulario-card input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
   accent-color: #dc2626;
 }
 
-/* Botón enviar */
-.formulario-resena button[type="submit"] {
-  width: 100%;
+/* =========================================================
+  BOTÓN DE ENVÍO GENERAL
+   ========================================================= */
+.formulario-resena button[type="submit"],
+.botones-form button[type="submit"] {
   padding: 0.75rem 1.5rem;
   background-color: #dc2626;
-  color: #ffffff;
+  color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -108,32 +124,38 @@
   transition: background-color 0.2s;
 }
 
-.formulario-resena button[type="submit"]:hover {
+.formulario-resena button[type="submit"]:hover,
+.botones-form button[type="submit"]:hover {
   background-color: #b91c1c;
 }
 
-/* Mensaje de carga */
-.mensaje-carga {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 1.2rem;
-  padding: 3rem;
-}
-
-/* Mensaje sin reseñas */
+/* =========================================================
+  MENSAJES DE ESTADO
+   ========================================================= */
+.mensaje-carga,
 .mensaje-vacio {
   text-align: center;
-  color: #6b7280;
   font-size: 1.1rem;
-  padding: 2rem;
   background-color: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
+  margin: 2rem auto;
+  padding: 2rem;
   max-width: 500px;
-  margin: 0 auto;
 }
 
-/* Grid de reseñas */
+.mensaje-carga {
+  color: #9ca3af;
+  font-size: 1.2rem;
+}
+
+.mensaje-vacio {
+  color: #6b7280;
+}
+
+/* =========================================================
+  TARJETAS DE RESEÑAS Y FORMULARIO
+   ========================================================= */
 .resenas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -141,8 +163,9 @@
   margin-top: 2rem;
 }
 
-/* Tarjeta de reseña */
-.resena-card {
+/* ====== Tarjeta individual ====== */
+.resena-card,
+.formulario-card {
   background-color: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
@@ -156,11 +179,11 @@
   box-shadow: 0 8px 12px rgba(220, 38, 38, 0.2);
 }
 
+/* ====== Contenido de reseña ====== */
 .resena-card h3 {
   color: #dc2626;
   font-size: 1.2rem;
   font-weight: 600;
-  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -178,7 +201,7 @@
   font-weight: 600 !important;
 }
 
-/* Texto de la reseña */
+/* Texto principal */
 .resena-texto {
   color: #e5e7eb !important;
   background-color: #0a0a0a;
@@ -196,7 +219,9 @@
   margin-top: 0.8rem !important;
 }
 
-/* Botones de acción */
+/* =========================================================
+  BOTONES DE ACCIÓN (EDITAR / ELIMINAR)
+   ========================================================= */
 .resena-botones {
   display: flex;
   gap: 0.6rem;
@@ -205,42 +230,132 @@
   border-top: 1px solid #2a2a2a;
 }
 
-.btn-editar-resena {
+.btn-editar-resena,
+.btn-eliminar-resena,
+.botones-form button {
   flex: 1;
   padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Botón Editar */
+.btn-editar-resena,
+.botones-form button[type="button"] {
   background-color: #374151;
   color: #e5e7eb;
   border: 1px solid #4b5563;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.2s;
 }
 
-.btn-editar-resena:hover {
+.btn-editar-resena:hover,
+.botones-form button[type="button"]:hover {
   background-color: #4b5563;
   border-color: #6b7280;
 }
 
+/* Botón Eliminar */
 .btn-eliminar-resena {
-  flex: 1;
-  padding: 0.6rem 1rem;
   background-color: #dc2626;
   color: #ffffff;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
 }
 
 .btn-eliminar-resena:hover {
   background-color: #b91c1c;
 }
 
-/* Responsive */
+/* =========================================================
+  TARJETA "AGREGAR NUEVA RESEÑA"
+   ========================================================= */
+.agregar-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111111;
+  border: 2px dashed #dc2626;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: #9ca3af;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.agregar-card:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 10px rgba(220, 38, 38, 0.3);
+}
+
+.agregar-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.agregar-icono {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.agregar-card:hover .agregar-icono {
+  transform: scale(1.1);
+}
+
+/* =========================================================
+  ALTURA UNIFORME PARA TODAS LAS TARJETAS
+   ========================================================= */
+.resena-card,
+.formulario-card,
+.agregar-card {
+  height: 480px;
+  overflow-y: auto;
+}
+
+/* =========================================================
+  BOTONES CENTRADOS Y SIMÉTRICOS (NUEVO)
+   ========================================================= */
+.botones-form {
+  display: flex;
+  flex-direction: column; /* Uno arriba del otro */
+  align-items: center;    /* Centrado */
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.botones-form button {
+  width: 70%;
+  max-width: 350px;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Botón guardar ya está arriba (submit) */
+
+/* Botón cancelar ya está abajo */
+.botones-form button[type="button"] {
+  background-color: #374151;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+}
+
+.botones-form button[type="button"]:hover {
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+/* =========================================================
+  RESPONSIVE DESIGN
+   ========================================================= */
 @media (max-width: 768px) {
   .resenas-container {
     padding: 1.5rem;
