@@ -49,25 +49,25 @@ function Estadisticas() {
 
   return (
     <div className="estadisticas-container">
-      <h2>📊 Estadísticas Personales</h2>
+      <h2>Estadísticas Personales</h2>
       <div className="estadisticas-grid">
         <div className="estadistica-box">
-          <div className="estadistica-box-icon">🎮</div>
+          <div className="estadistica-box-icon"></div>
           <div className="estadistica-box-label">Total de juegos</div>
           <div className="estadistica-box-valor">{estadisticas.totalJuegos}</div>
         </div>
         <div className="estadistica-box">
-          <div className="estadistica-box-icon">✅</div>
+          <div className="estadistica-box-icon"></div>
           <div className="estadistica-box-label">Completados</div>
           <div className="estadistica-box-valor">{estadisticas.completados}</div>
         </div>
         <div className="estadistica-box">
-          <div className="estadistica-box-icon">⏱️</div>
+          <div className="estadistica-box-icon"></div>
           <div className="estadistica-box-label">Horas jugadas</div>
           <div className="estadistica-box-valor">{estadisticas.horasTotales}</div>
         </div>
         <div className="estadistica-box">
-          <div className="estadistica-box-icon">⭐</div>
+          <div className="estadistica-box-icon"></div>
           <div className="estadistica-box-label">Puntuación promedio</div>
           <div className="estadistica-box-valor">{estadisticas.promedioPuntuacion}</div>
         </div>

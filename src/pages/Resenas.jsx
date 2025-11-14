@@ -120,11 +120,12 @@ function Resenas() {
           <form className="resena-card formulario-card" onSubmit={handleSubmit}>
             <h3>{resenaEditada ? "Editar Reseña" : "Nueva Reseña"}</h3>
 
+            <label>Nombre del Juego:</label>
             <input
               type="text"
-              name="juegoId"
-              placeholder="ID del juego"
-              value={formData.juegoId}
+              name="nombreJuego"
+              placeholder="Nombre del juego"
+              value={formData.nombreJuego}
               onChange={handleChange}
               required
             />

@@ -33,7 +33,6 @@ const BibliotecaJuegos = () => {
             <h3>{juego.titulo}</h3>
             <p><strong>Género:</strong> {juego.genero}</p>
             <p><strong>Plataforma:</strong> {juego.plataforma}</p>
-            <p><strong>Año:</strong> {juego.anoLanzamiento}</p>
             <p><strong>Desarrollador:</strong> {juego.desarrollador}</p>
             <p className="descripcion">{juego.descripcion}</p>
           </div>
