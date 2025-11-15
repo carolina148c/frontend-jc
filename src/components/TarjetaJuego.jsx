@@ -13,19 +13,17 @@ function TarjetaJuego({ juego, onEditar, onEliminar }) {
       <div className="tarjeta-contenido">
         <h3 className="tarjeta-titulo">{juego.titulo}</h3>
         <p className="tarjeta-info">
-          <span>🎮</span>
           <span>{juego.plataforma}</span>
         </p>
         <p className="tarjeta-info">
-          <span>⭐</span>
-          <span>{juego.genero}</span>
+        <span>{juego.genero}</span>
         </p>
         <p className="tarjeta-info">
-          <span>📅</span>
+          <span></span>
           <span>{juego.anoLanzamiento}</span>
         </p>
         <p className={`tarjeta-estado ${juego.completado ? "completado" : "progreso"}`}>
-          {juego.completado ? "✅ Completado" : "🕹️ En progreso"}
+          {juego.completado ? "Completado" : "En progreso"}
         </p>
 
         <div className="tarjeta-botones">
