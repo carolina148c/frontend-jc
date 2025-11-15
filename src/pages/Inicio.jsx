@@ -15,7 +15,8 @@ function Inicio() {
           Organiza, rastrea y evalúa tu colección de videojuegos. Lleva el control de tus horas de juego, escribe reseñas y descubre estadísticas fascinantes sobre tus hábitos gaming.
         </p>
 
-        <button className="inicio-btn">VER AHORA</button>
+        <a href = "/biblioteca" className="inicio-btn">
+          VER AHORA</a>
 
       </div>
     </section>
