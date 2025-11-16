@@ -44,7 +44,7 @@ function FormularioJuego({ onGuardar, juegoEditado, onCancelar }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="formulario-juego">
+    <form onSubmit={handleSubmit} className="formulario-juego juego-card">
       <h3>{juegoEditado ? "Editar juego" : "Agregar nuevo juego"}</h3>
 
       <input
@@ -89,6 +89,7 @@ function FormularioJuego({ onGuardar, juegoEditado, onCancelar }) {
         placeholder="Desarrollador"
         value={formData.desarrollador}
         onChange={handleChange}
+        required
       />
 
       <input
@@ -97,6 +98,7 @@ function FormularioJuego({ onGuardar, juegoEditado, onCancelar }) {
         placeholder="URL de la portada"
         value={formData.imagenPortada}
         onChange={handleChange}
+        required
       />
 
       <textarea
@@ -105,6 +107,7 @@ function FormularioJuego({ onGuardar, juegoEditado, onCancelar }) {
         value={formData.descripcion}
         onChange={handleChange}
         rows={4}
+        required
       />
 
       <label className="checkbox-label">
@@ -121,15 +124,13 @@ function FormularioJuego({ onGuardar, juegoEditado, onCancelar }) {
         <button type="submit" className="btn-guardar">
           {juegoEditado ? "Guardar cambios" : "Agregar juego"}
         </button>
-        {juegoEditado && (
-          <button
-            type="button"
-            className="btn-cancelar"
-            onClick={onCancelar}
-          >
-            Cancelar
-          </button>
-        )}
+        <button
+          type="button"
+          className="btn-cancelar"
+          onClick={onCancelar}
+        >
+          Cancelar
+        </button>
       </div>
     </form>
   );
