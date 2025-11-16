@@ -96,3 +96,46 @@
     width: 100%;
   }
 }
+
+.main-nav-bar {
+    /* Propiedades de Flexbox para la alineación */
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    
+    /* Mantén el padding y el background-color como en la imagen */
+    padding: 30px 30px; 
+    background-color:#19191a;
+    color: white; 
+}
+
+/* 2. Estilos para los Enlaces (el div que los agrupa) */
+.nav-links {
+    display: flex; 
+    gap: 20px; 
+}
+
+/* 3. Estilos del Título (GameTracker) */
+.main-nav-bar h2 {
+    color: #dc2626;
+    margin: 0; 
+    font-size: 3em; 
+    font-weight: 800; 
+
+}
+
+/* 4. Estilos de los Links */
+.nav-links a {
+    color:#6c7086;
+    text-decoration: none; 
+    font-weight: bold;
+    transition: color 0.2s ease; 
+    font-size: 1.2em;
+    
+
+}
+
+/* 5. Estilo al pasar el mouse (HOVER) */
+.nav-links a:hover {
+    color: #dc2626 
+}

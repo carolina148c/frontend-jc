@@ -8,9 +8,10 @@ import Inicio from "./pages/Inicio.jsx";
 function App() {
   return (
     <Router>
-      <nav>
+      <nav  className="main-nav-bar">
         <h2>GameTracker</h2>
-        <div>
+        
+        <div className="nav-links">
           <Link to="/">Inicio</Link>
           <Link to="/biblioteca">Biblioteca</Link>
           <Link to="/resenas">Reseñas</Link>
