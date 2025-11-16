@@ -13,7 +13,7 @@ function Resenas() {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [cargando, setCargando] = useState(true);
   const [formData, setFormData] = useState({
-    juegoId: "",
+    juegoNombre: "",
     puntuacion: 1,
     textoResena: "",
     horasJugadas: 0,
@@ -53,7 +53,7 @@ function Resenas() {
         await agregarResena(formData);
       }
       setFormData({
-        juegoId: "",
+        juegoNombre: "",
         puntuacion: 1,
         textoResena: "",
         horasJugadas: 0,
@@ -72,7 +72,7 @@ function Resenas() {
   const handleEditar = (resena) => {
     setResenaEditada(resena);
     setFormData({
-      juegoId: resena.juegoId?._id || resena.juegoId || "",
+      juegoNombre: resena.juegoId?.titulo || resena.juegoNombre || "",
       puntuacion: resena.puntuacion,
       textoResena: resena.textoResena,
       horasJugadas: resena.horasJugadas,

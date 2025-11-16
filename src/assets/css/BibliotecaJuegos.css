@@ -38,6 +38,40 @@
   box-shadow: 0 8px 12px rgba(220, 38, 38, 0.2);
 }
 
+/* Tarjeta para agregar juego */
+.agregar-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 2px dashed #dc2626;
+  cursor: pointer;
+}
+
+.agregar-card:hover {
+  border-color: #ef4444;
+  box-shadow: 0 8px 12px rgba(220, 38, 38, 0.3);
+}
+
+.agregar-contenido {
+  text-align: center;
+}
+
+.agregar-icono {
+  display: block;
+  font-size: 3.5rem;
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+}
+
+.agregar-card p {
+  color: #9ca3af;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
 /* Imagen del juego */
 .juego-imagen {
   width: 100%;

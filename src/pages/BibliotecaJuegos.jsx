@@ -1,41 +1,79 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+﻿import { useEffect, useState } from "react";
 import "../assets/css/BibliotecaJuegos.css";
-
+import FormularioJuego from "../components/FormularioJuego";
+import { obtenerJuegos, agregarJuego, editarJuego, eliminarJuego } from "../services/api";
 
 const BibliotecaJuegos = () => {
   const [juegos, setJuegos] = useState([]);
+  const [showFormulario, setShowFormulario] = useState(false);
+  const [juegoEditado, setJuegoEditado] = useState(null);
 
   useEffect(() => {
-    const obtenerJuegos = async () => {
+    const fetchJuegos = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/juegos");
-        setJuegos(res.data);
+        const data = await obtenerJuegos();
+        setJuegos(data);
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
       }
     };
 
-    obtenerJuegos();
+    fetchJuegos();
   }, []);
 
   const handleEditar = (juego) => {
-    // Lógica para editar el juego
-    console.log("Editar juego:", juego);
+    setJuegoEditado(juego);
+    setShowFormulario(true);
   };
-const handleEliminar = async (juegoId) => {
+
+  const handleEliminar = async (juegoId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/juegos/${juegoId}`);
-      setJuegos(juegos.filter((juego) => juego._id !== juegoId));
+      if (!window.confirm("¿Seguro que deseas eliminar este juego?")) return;
+      await eliminarJuego(juegoId);
+      setJuegos((prev) => prev.filter((j) => j._id !== juegoId));
     } catch (error) {
       console.error("Error al eliminar el juego:", error);
     }
+  };
+
+  const handleGuardar = async (formData) => {
+    try {
+      if (juegoEditado && juegoEditado._id) {
+        await editarJuego(juegoEditado._id, formData);
+      } else {
+        await agregarJuego(formData);
+      }
+      const data = await obtenerJuegos();
+      setJuegos(data);
+      setShowFormulario(false);
+      setJuegoEditado(null);
+    } catch (error) {
+      console.error("Error al guardar el juego:", error);
+    }
+  };
+
+  const handleCancelar = () => {
+    setShowFormulario(false);
+    setJuegoEditado(null);
   };
 
   return (
     <div className="biblioteca-container">
       <h1>Biblioteca de Juegos</h1>
       <div className="juegos-grid">
+        {/* Tarjeta para agregar nuevo juego */}
+        {!showFormulario && (
+          <div
+            className="juego-card agregar-card"
+            onClick={() => setShowFormulario(true)}
+          >
+            <div className="agregar-contenido">
+              <span className="agregar-icono">＋</span>
+              <p>Agregar nuevo juego</p>
+            </div>
+          </div>
+        )}
+
         {juegos.map((juego) => (
           <div key={juego._id} className="juego-card">
             <img
@@ -57,7 +95,7 @@ const handleEliminar = async (juegoId) => {
               </button>
               <button
                 className="btn-eliminar-juego"
-                onClick={() => handleEliminar(juego._Id)}
+                onClick={() => handleEliminar(juego._id)}
               >
                 Eliminar
               </button>
@@ -65,6 +103,15 @@ const handleEliminar = async (juegoId) => {
           </div>
         ))}
       </div>
+
+      {showFormulario && (
+        <FormularioJuego
+          onGuardar={handleGuardar}
+          juegoEditado={juegoEditado}
+          onCancelar={handleCancelar}
+        />
+      )}
+
     </div>
   );
 };
