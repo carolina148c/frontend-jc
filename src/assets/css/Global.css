@@ -63,9 +63,7 @@ a {
   transition: color 0.2s;
 }
 
-a:hover {
-  color: #b91c1c;
-}
+
 
 /* Listas */
 ul, ol {
