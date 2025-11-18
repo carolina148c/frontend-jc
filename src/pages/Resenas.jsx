@@ -4,6 +4,7 @@ import {
   agregarResena,
   editarResena,
   eliminarResena,
+  obtenerJuegos,
 } from "../services/api";
 import "../assets/css/Resenas.css";
 
@@ -12,8 +13,9 @@ function Resenas() {
   const [resenaEditada, setResenaEditada] = useState(null);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [cargando, setCargando] = useState(true);
+  const [juegos, setJuegos] = useState([]);
   const [formData, setFormData] = useState({
-    juegoNombre: "",
+    juegoId: "",
     puntuacion: 1,
     textoResena: "",
     horasJugadas: 0,
@@ -23,7 +25,17 @@ function Resenas() {
 
   useEffect(() => {
     cargarResenas();
+    cargarJuegos();
   }, []);
+
+  const cargarJuegos = async () => {
+    try {
+      const data = await obtenerJuegos();
+      setJuegos(data);
+    } catch (err) {
+      console.error("Error al cargar juegos", err);
+    }
+  };
 
   const cargarResenas = async () => {
     try {
@@ -53,7 +65,7 @@ function Resenas() {
         await agregarResena(formData);
       }
       setFormData({
-        juegoNombre: "",
+        juegoId: "",
         puntuacion: 1,
         textoResena: "",
         horasJugadas: 0,
@@ -72,7 +84,7 @@ function Resenas() {
   const handleEditar = (resena) => {
     setResenaEditada(resena);
     setFormData({
-      juegoNombre: resena.juegoId?.titulo || resena.juegoNombre || "",
+      juegoId: resena.juegoId?._id || "",
       puntuacion: resena.puntuacion,
       textoResena: resena.textoResena,
       horasJugadas: resena.horasJugadas,
@@ -120,15 +132,20 @@ function Resenas() {
           <form className="resena-card formulario-card" onSubmit={handleSubmit}>
             <h3>{resenaEditada ? "Editar Reseña" : "Nueva Reseña"}</h3>
 
-            <label>Nombre del Juego:</label>
-            <input
-              type="text"
-              name="nombreJuego"
-              placeholder="Nombre del juego"
-              value={formData.nombreJuego}
+            <label>Juego:</label>
+            <select
+              name="juegoId"
+              value={formData.juegoId}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">Selecciona un juego</option>
+              {juegos.map((j) => (
+                <option key={j._id} value={j._id}>
+                  {j.titulo}
+                </option>
+              ))}
+            </select>
 
             <label>Puntuación:</label>
             <select
