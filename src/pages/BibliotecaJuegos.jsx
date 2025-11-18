@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useState, useRef } from "react";
 import "../assets/css/BibliotecaJuegos.css";
 import FormularioJuego from "../components/FormularioJuego";
 import { obtenerJuegos, agregarJuego, editarJuego, eliminarJuego } from "../services/api";
@@ -7,6 +7,7 @@ const BibliotecaJuegos = () => {
   const [juegos, setJuegos] = useState([]);
   const [showFormulario, setShowFormulario] = useState(false);
   const [juegoEditado, setJuegoEditado] = useState(null);
+  const formularioRef = useRef(null);
 
   useEffect(() => {
     const fetchJuegos = async () => {
@@ -25,6 +26,12 @@ const BibliotecaJuegos = () => {
     setJuegoEditado(juego);
     setShowFormulario(true);
   };
+
+  useEffect(() => {
+    if (showFormulario && formularioRef.current) {
+      formularioRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [showFormulario]);
 
   const handleEliminar = async (juegoId) => {
     try {
@@ -63,11 +70,13 @@ const BibliotecaJuegos = () => {
       <div className="juegos-grid">
         {/* Tarjeta para agregar nuevo juego o mostrar formulario dentro del grid */}
         {showFormulario ? (
-          <FormularioJuego
-            onGuardar={handleGuardar}
-            juegoEditado={juegoEditado}
-            onCancelar={handleCancelar}
-          />
+          <div ref={formularioRef}>
+            <FormularioJuego
+              onGuardar={handleGuardar}
+              juegoEditado={juegoEditado}
+              onCancelar={handleCancelar}
+            />
+          </div>
         ) : (
           <div
             className="juego-card agregar-card"
