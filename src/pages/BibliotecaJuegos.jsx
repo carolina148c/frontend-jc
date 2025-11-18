@@ -61,8 +61,14 @@ const BibliotecaJuegos = () => {
     <div className="biblioteca-container">
       <h1>Biblioteca de Juegos</h1>
       <div className="juegos-grid">
-        {/* Tarjeta para agregar nuevo juego */}
-        {!showFormulario && (
+        {/* Tarjeta para agregar nuevo juego o mostrar formulario dentro del grid */}
+        {showFormulario ? (
+          <FormularioJuego
+            onGuardar={handleGuardar}
+            juegoEditado={juegoEditado}
+            onCancelar={handleCancelar}
+          />
+        ) : (
           <div
             className="juego-card agregar-card"
             onClick={() => setShowFormulario(true)}
@@ -104,13 +110,7 @@ const BibliotecaJuegos = () => {
         ))}
       </div>
 
-      {showFormulario && (
-        <FormularioJuego
-          onGuardar={handleGuardar}
-          juegoEditado={juegoEditado}
-          onCancelar={handleCancelar}
-        />
-      )}
+      
 
     </div>
   );
